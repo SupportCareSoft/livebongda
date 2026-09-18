@@ -7,72 +7,15 @@
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    .match-title {
-      position: relative;
-      left: 50%;
-      width: fit-content;
-      max-width: 92%;
-      margin: 0 0 -2px;
-      padding: 6px 22px 5px;
-      overflow: hidden;
-      transform: translateX(-50%);
-      border: 2px solid #e1ba5e;
-      border-bottom: 0;
-      border-radius: 12px 12px 0 0;
-      background: linear-gradient(135deg, #45361a, #211a10);
-      color: #ffe4a0;
-      font-size: clamp(13px, 3.5vw, 18px);
-      font-weight: 900;
-      letter-spacing: .5px;
-      text-align: center;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-
-    .match-status {
-      position: relative;
-      z-index: 1;
-      width: fit-content;
-      margin: 0 auto -2px;
-      padding: 2px 11px;
-      border: 1px solid #4b9d69;
-      border-radius: 8px 8px 0 0;
-      background: #172d21;
-      color: #7ff0a3;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .5px;
-    }
-
-    .match-status.paused {
-      border-color: #736548;
-      background: #2a261c;
-      color: #d6c79c;
-    }
-
-    .added-time {
-      min-height: 11px;
-      color: #ffd36b;
-      font-size: 9px;
-      font-weight: 900;
-      letter-spacing: .3px;
-    }
-
-    .added-time:empty {
-      display: none;
-    }
-
-    .team-name {
-      display: block;
-      width: 100%;
-      text-align: center !important;
-    }
+    .match-title{position:relative;left:50%;width:fit-content;max-width:92%;margin:0 0 -2px;padding:6px 22px 5px;overflow:hidden;transform:translateX(-50%);border:2px solid #e1ba5e;border-bottom:0;border-radius:12px 12px 0 0;background:linear-gradient(135deg,#45361a,#211a10);color:#ffe4a0;font-size:clamp(13px,3.5vw,18px);font-weight:900;letter-spacing:.5px;text-align:center;text-overflow:ellipsis;white-space:nowrap}
+    .added-time{min-height:16px;color:#ffd36b;font-size:13px;font-weight:900;letter-spacing:.4px}
+    .added-time:empty{display:none}
+    .team-name{display:block;width:100%;text-align:center!important}
   </style>
 </head>
 
 <body class="overlay-page">
   <div class="match-title" id="titleDisplay">GIAO HỮU BÓNG ĐÁ</div>
-  <div class="match-status paused" id="matchStatus">TRẬN TẠM DỪNG</div>
 
   <section class="scoreboard" aria-label="Bảng tỉ số">
     <div class="team home">
@@ -84,7 +27,6 @@
       <span class="period" id="periodDisplay">HIỆP 1</span>
       <span class="time" id="timeDisplay">00:00</span>
       <span class="added-time" id="addedTimeDisplay"></span>
-      <span class="live paused" id="clockState">TẠM DỪNG</span>
     </div>
 
     <div class="team away">
@@ -95,6 +37,6 @@
 
   <p class="overlay-warning" id="warning"></p>
 
-  <script type="module" src="overlay.js?v=4"></script>
+  <script type="module" src="overlay.js?v=5"></script>
 </body>
 </html>
