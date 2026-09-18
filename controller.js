@@ -8,7 +8,7 @@ import {
   session,
   watchState,
   clockText
-} from './app.js?v=4';
+} from './app.js?v=5';
 
 const $ = id => document.getElementById(id);
 
@@ -17,12 +17,6 @@ let nameTimer;
 
 function render() {
   $('titleDisplay').textContent = state.title || defaults.title;
-
-  $('matchStatus').textContent = state.running
-    ? '● TRẬN ĐANG CHẠY'
-    : 'TRẬN TẠM DỪNG';
-
-  $('matchStatus').classList.toggle('paused', !state.running);
 
   $('homeDisplay').textContent = state.home;
   $('awayDisplay').textContent = state.away;
@@ -36,17 +30,12 @@ function render() {
   $('periodDisplay').textContent = state.period;
   $('period').value = state.period;
 
-  $('addedTimeDisplay').textContent = state.addedTime
-    ? `BÙ GIỜ +${state.addedTime}′`
-    : '';
-
   $('timeDisplay').textContent = clockText(getElapsed(state));
 
-  $('clockState').textContent = state.running
-    ? '● ĐANG CHẠY'
-    : 'TẠM DỪNG';
+  $('addedTimeDisplay').textContent = state.addedTime
+    ? `BÙ GIỜ: +${state.addedTime}′`
+    : '';
 
-  $('clockState').classList.toggle('paused', !state.running);
   $('startPause').textContent = state.running ? 'TẠM DỪNG' : 'BẮT ĐẦU';
 
   if (document.activeElement !== $('matchTitle')) {
@@ -122,10 +111,7 @@ function setup() {
 
   $('addedTime').addEventListener('change', () => {
     update({
-      addedTime: Math.min(
-        30,
-        Math.max(0, Number($('addedTime').value || 0))
-      )
+      addedTime: Math.min(30, Math.max(0, Number($('addedTime').value || 0)))
     });
   });
 
@@ -177,9 +163,7 @@ function setup() {
   });
 
   $('openSession').addEventListener('click', () => {
-    location.href = `controller.html?session=${encodeURIComponent(
-      $('session').value
-    )}&v=4`;
+    location.href = `controller.html?session=${encodeURIComponent($('session').value)}&v=5`;
   });
 
   $('copyOverlay').addEventListener('click', async () => {
