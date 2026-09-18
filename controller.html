@@ -1,26 +1,149 @@
 <!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
- <title>Điều khiển bảng tỉ số</title><link rel="stylesheet" href="styles.css">
-  <style>.match-title{width:fit-content;max-width:92%;margin:0 auto -2px;padding:6px 22px 5px;overflow:hidden;border:2px solid #e1ba5e;border-bottom:0;border-radius:12px 12px 0 0;background:linear-gradient(135deg,#45361a,#211a10);color:#ffe4a0;font-size:clamp(13px,3.5vw,18px);font-weight:900;letter-spacing:.5px;text-align:center;text-overflow:ellipsis;white-space:nowrap}</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Điều khiển bảng tỉ số</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .match-title {
+      width: fit-content;
+      max-width: 92%;
+      margin: 0 auto -2px;
+      padding: 6px 22px 5px;
+      overflow: hidden;
+      border: 2px solid #e1ba5e;
+      border-bottom: 0;
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(135deg, #45361a, #211a10);
+      color: #ffe4a0;
+      font-size: clamp(13px, 3.5vw, 18px);
+      font-weight: 900;
+      letter-spacing: .5px;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
 </head>
+
 <body class="controller-page">
   <main class="app">
-     <h1>⚽ Điều khiển tỉ số</h1><p class="note">Mở trang này trên điện thoại. Thay đổi sẽ cập nhật ngay cho bảng livestream.</p>
+    <h1>⚽ Điều khiển tỉ số</h1>
+    <p class="note">Mở trang này trên điện thoại. Thay đổi sẽ cập nhật ngay cho bảng livestream.</p>
+
     <div class="match-title" id="titleDisplay">GIAO HỮU BÓNG ĐÁ</div>
+
     <section class="scoreboard" aria-label="Bảng tỉ số hiện tại">
-      <div class="team home"><p class="team-name" id="homeDisplay">ĐỘI NHÀ</p><div class="score" id="homeScoreDisplay">0</div></div>
-      <div class="clock"><span class="period" id="periodDisplay">HIỆP 1</span><span class="time" id="timeDisplay">00:00</span><span class="live paused" id="clockState">TẠM DỪNG</span></div>
-      <div class="team away"><p class="team-name" id="awayDisplay">ĐỘI KHÁCH</p><div class="score" id="awayScoreDisplay">0</div></div>
+      <div class="team home">
+        <p class="team-name" id="homeDisplay">ĐỘI NHÀ</p>
+        <div class="score" id="homeScoreDisplay">0</div>
+      </div>
+
+      <div class="clock">
+        <span class="period" id="periodDisplay">HIỆP 1</span>
+        <span class="time" id="timeDisplay">00:00</span>
+        <span class="live paused" id="clockState">TẠM DỪNG</span>
+      </div>
+
+      <div class="team away">
+        <p class="team-name" id="awayDisplay">ĐỘI KHÁCH</p>
+        <div class="score" id="awayScoreDisplay">0</div>
+      </div>
     </section>
- <p class="connection" id="connection">Đang kết nối…</p>
-    <section class="card"><label for="matchTitle">Tiêu đề trận đấu</label><input id="matchTitle" maxlength="42" placeholder="Ví dụ: Giao hữu bóng đá"></section>
-    <section class="card teams-control"><div class="team-control"><label for="homeName">Đội nhà</label><input id="homeName" maxlength="24"></div><div class="team-control"><label for="awayName">Đội khách</label><input id="awayName" maxlength="24"></div></section>
-    <section class="card"><h2>Đồng hồ trận đấu</h2><div class="clock-controls"><div><label for="period">Hiệp đấu</label><select id="period"><option>HIỆP 1</option><option>HIỆP 2</option><option>HIỆP PHỤ 1</option><option>HIỆP PHỤ 2</option><option>PENALTY</option></select></div><div><label>Đặt thời gian</label><div class="set-time"><input id="minutes" type="number" min="0" max="199" value="0"><span>:</span><input id="seconds" type="number" min="0" max="59" value="0"></div></div></div><div class="clock-actions"><button class="gold" id="startPause" type="button">BẮT ĐẦU</button><button class="secondary" id="applyTime" type="button">ĐẶT GIỜ</button><button class="secondary" id="resetTime" type="button">00:00</button></div></section>
-    <section class="card links-card"><h2>Liên kết</h2><label for="session">Mã trận đấu</label><div class="session-row"><input id="session" maxlength="48"><button id="openSession" type="button">MỞ</button></div><button class="copy" id="copyOverlay" type="button">Sao chép link nhúng livestream</button><button class="copy" id="copyControl" type="button">Sao chép link điều khiển</button></section>
-    <button class="reset" id="resetAll" type="button">Làm lại trận</button><p class="saved" id="saved" aria-live="polite"></p>
+
+    <p class="connection" id="connection">Đang kết nối…</p>
+
+    <section class="card">
+      <label for="matchTitle">Tiêu đề trận đấu</label>
+      <input id="matchTitle" maxlength="42" placeholder="Ví dụ: Giao hữu bóng đá">
+    </section>
+
+    <section class="card teams-control">
+      <div class="team-control">
+        <label for="homeName">Đội nhà</label>
+        <input id="homeName" maxlength="24">
+      </div>
+
+      <div class="team-control">
+        <label for="awayName">Đội khách</label>
+        <input id="awayName" maxlength="24">
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Tỉ số</h2>
+
+      <div class="score-controls">
+        <div class="side home-score">
+          <button type="button" data-score="home" data-change="-1">−</button>
+          <b id="homeScoreControl">0</b>
+          <button type="button" data-score="home" data-change="1">+</button>
+        </div>
+
+        <div class="side away-score">
+          <button type="button" data-score="away" data-change="-1">−</button>
+          <b id="awayScoreControl">0</b>
+          <button type="button" data-score="away" data-change="1">+</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Đồng hồ trận đấu</h2>
+
+      <div class="clock-controls">
+        <div>
+          <label for="period">Hiệp đấu</label>
+          <select id="period">
+            <option>HIỆP 1</option>
+            <option>HIỆP 2</option>
+            <option>HIỆP PHỤ 1</option>
+            <option>HIỆP PHỤ 2</option>
+            <option>PENALTY</option>
+          </select>
+        </div>
+
+        <div>
+          <label>Đặt thời gian</label>
+          <div class="set-time">
+            <input id="minutes" type="number" min="0" max="199" value="0">
+            <span>:</span>
+            <input id="seconds" type="number" min="0" max="59" value="0">
+          </div>
+        </div>
+      </div>
+
+      <div class="clock-actions">
+        <button class="gold" id="startPause" type="button">BẮT ĐẦU</button>
+        <button class="secondary" id="applyTime" type="button">ĐẶT GIỜ</button>
+        <button class="secondary" id="resetTime" type="button">00:00</button>
+      </div>
+    </section>
+
+    <section class="card links-card">
+      <h2>Liên kết</h2>
+
+      <label for="session">Mã trận đấu</label>
+      <div class="session-row">
+        <input id="session" maxlength="48">
+        <button id="openSession" type="button">MỞ</button>
+      </div>
+
+      <button class="copy" id="copyOverlay" type="button">
+        Sao chép link nhúng livestream
+      </button>
+
+      <button class="copy" id="copyControl" type="button">
+        Sao chép link điều khiển
+      </button>
+    </section>
+
+    <button class="reset" id="resetAll" type="button">Làm lại trận</button>
+    <p class="saved" id="saved" aria-live="polite"></p>
   </main>
-  <script type="module" src="controller.js"></script>
+
+  <script type="module" src="controller.js?v=2"></script>
 </body>
 </html>
