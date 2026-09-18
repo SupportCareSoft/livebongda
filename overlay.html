@@ -1,5 +1,52 @@
-
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Overlay tỉ số</title><link rel="stylesheet" href="styles.css"></head>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Overlay tỉ số</title><link rel="stylesheet" href="styles.css"><style>.match-title{width:fit-content;max-width:92%;margin:0 auto -2px;padding:6px 22px 5px;overflow:hidden;border:2px solid #e1ba5e;border-bottom:0;border-radius:12px 12px 0 0;background:linear-gradient(135deg,#45361a,#211a10);color:#ffe4a0;font-size:clamp(13px,3.5vw,18px);font-weight:900;letter-spacing:.5px;text-align:center;text-overflow:ellipsis;white-space:nowrap}</style></head>
-<body class="overlay-page"><div class="match-title" id="titleDisplay">GIAO HỮU BÓNG ĐÁ</div><section class="scoreboard" aria-label="Bảng tỉ số"><div class="team home"><p class="team-name" id="homeDisplay">ĐỘI NHÀ</p><div class="score" id="homeScoreDisplay">0</div></div><div class="clock"><span class="period" id="periodDisplay">HIỆP 1</span><span class="time" id="timeDisplay">00:00</span><span class="live paused" id="clockState">TẠM DỪNG</span></div><div class="team away"><p class="team-name" id="awayDisplay">ĐỘI KHÁCH</p><div class="score" id="awayScoreDisplay">0</div></div></section><p class="overlay-warning" id="warning"></p><script type="module" src="overlay.js"></script></body></html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Overlay tỉ số</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .match-title {
+      width: fit-content;
+      max-width: 92%;
+      margin: 0 auto -2px;
+      padding: 6px 22px 5px;
+      overflow: hidden;
+      border: 2px solid #e1ba5e;
+      border-bottom: 0;
+      border-radius: 12px 12px 0 0;
+      background: linear-gradient(135deg,#45361a,#211a10);
+      color: #ffe4a0;
+      font-size: clamp(13px,3.5vw,18px);
+      font-weight: 900;
+      text-align: center;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body class="overlay-page">
+  <div class="match-title" id="titleDisplay">GIAO HỮU BÓNG ĐÁ</div>
+
+  <section class="scoreboard" aria-label="Bảng tỉ số">
+    <div class="team home">
+      <p class="team-name" id="homeDisplay">ĐỘI NHÀ</p>
+      <div class="score" id="homeScoreDisplay">0</div>
+    </div>
+
+    <div class="clock">
+      <span class="period" id="periodDisplay">HIỆP 1</span>
+      <span class="time" id="timeDisplay">00:00</span>
+      <span class="live paused" id="clockState">TẠM DỪNG</span>
+    </div>
+
+    <div class="team away">
+      <p class="team-name" id="awayDisplay">ĐỘI KHÁCH</p>
+      <div class="score" id="awayScoreDisplay">0</div>
+    </div>
+  </section>
+
+  <p class="overlay-warning" id="warning"></p>
+  <script type="module" src="overlay.js"></script>
+</body>
+</html>
