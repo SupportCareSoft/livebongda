@@ -6,7 +6,7 @@ import {
   set
 } from 'https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js';
 
-import { firebaseConfig } from './firebase-config.js?v=2';
+import { firebaseConfig } from './firebase-config.js?v=4';
 
 const defaults = {
   title: 'GIAO HỮU BÓNG ĐÁ',
@@ -15,6 +15,7 @@ const defaults = {
   homeScore: 0,
   awayScore: 0,
   period: 'HIỆP 1',
+  addedTime: 0,
   elapsed: 0,
   running: false,
   startedAt: 0,
@@ -36,10 +37,10 @@ const safeSession = value =>
 export const session = safeSession(query.get('session'));
 
 export const overlayUrl =
-  new URL(`overlay.html?session=${session}&v=2`, location.href).href;
+  new URL(`overlay.html?session=${session}&v=4`, location.href).href;
 
 export const controllerUrl =
-  new URL(`controller.html?session=${session}&v=2`, location.href).href;
+  new URL(`controller.html?session=${session}&v=4`, location.href).href;
 
 export const getElapsed = state =>
   state.running
