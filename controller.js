@@ -8,7 +8,7 @@ import {
   session,
   watchState,
   clockText
-} from './app.js?v=2';
+} from './app.js?v=4';
 
 const $ = id => document.getElementById(id);
 
@@ -16,7 +16,13 @@ let state = { ...defaults };
 let nameTimer;
 
 function render() {
-  $('titleDisplay').textContent = state.title || 'GIAO HỮU BÓNG ĐÁ';
+  $('titleDisplay').textContent = state.title || defaults.title;
+
+  $('matchStatus').textContent = state.running
+    ? '● TRẬN ĐANG CHẠY'
+    : 'TRẬN TẠM DỪNG';
+
+  $('matchStatus').classList.toggle('paused', !state.running);
 
   $('homeDisplay').textContent = state.home;
   $('awayDisplay').textContent = state.away;
@@ -30,6 +36,10 @@ function render() {
   $('periodDisplay').textContent = state.period;
   $('period').value = state.period;
 
+  $('addedTimeDisplay').textContent = state.addedTime
+    ? `BÙ GIỜ +${state.addedTime}′`
+    : '';
+
   $('timeDisplay').textContent = clockText(getElapsed(state));
 
   $('clockState').textContent = state.running
@@ -40,7 +50,7 @@ function render() {
   $('startPause').textContent = state.running ? 'TẠM DỪNG' : 'BẮT ĐẦU';
 
   if (document.activeElement !== $('matchTitle')) {
-    $('matchTitle').value = state.title || 'GIAO HỮU BÓNG ĐÁ';
+    $('matchTitle').value = state.title || defaults.title;
   }
 
   if (document.activeElement !== $('homeName')) {
@@ -49,6 +59,10 @@ function render() {
 
   if (document.activeElement !== $('awayName')) {
     $('awayName').value = state.away;
+  }
+
+  if (document.activeElement !== $('addedTime')) {
+    $('addedTime').value = state.addedTime || 0;
   }
 }
 
@@ -106,8 +120,17 @@ function setup() {
     update({ period: $('period').value });
   });
 
+  $('addedTime').addEventListener('change', () => {
+    update({
+      addedTime: Math.min(
+        30,
+        Math.max(0, Number($('addedTime').value || 0))
+      )
+    });
+  });
+
   const textFields = [
-    ['matchTitle', 'title', 'GIAO HỮU BÓNG ĐÁ'],
+    ['matchTitle', 'title', defaults.title],
     ['homeName', 'home', 'ĐỘI NHÀ'],
     ['awayName', 'away', 'ĐỘI KHÁCH']
   ];
@@ -156,7 +179,7 @@ function setup() {
   $('openSession').addEventListener('click', () => {
     location.href = `controller.html?session=${encodeURIComponent(
       $('session').value
-    )}&v=2`;
+    )}&v=4`;
   });
 
   $('copyOverlay').addEventListener('click', async () => {
